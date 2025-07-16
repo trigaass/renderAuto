@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "renderAuto",
+    "slug": "renderAuto",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "src/assets/logo/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "src/assets/logo/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "src/assets/logo/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "src/assets/logo/favicon.png"
+    }
+  }
+}
