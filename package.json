@@ -1,13 +1,15 @@
 {
   "name": "renderauto",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "node_modules/expo/AppEntry.js",
+  "homepage": ".",
 "scripts": {
   "start": "expo start",
   "android": "expo start --android",
   "ios": "expo start --ios",
   "web": "expo start --web",
-  "build": "expo export"
+  "build": "expo export",
+  "serve": "npx serve dist -s"
 }
 ,
   "dependencies": {
