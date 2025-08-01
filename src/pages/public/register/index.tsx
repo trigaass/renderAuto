@@ -13,12 +13,12 @@ export const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://192.168.1.19:8080/users", {
+      const response = await axios.post("http://192.168.1.19:8080/users/register", {
         email,
         password,
       });
       Alert.alert("Conta criada com sucesso!");
-      navigation.navigate('login');
+      navigation.navigate('resendauth');
     } catch (error) {
       console.error(error);
       Alert.alert("Erro", "Não foi possível criar a conta. Tente novamente.");

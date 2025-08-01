@@ -1,62 +1,74 @@
 import { useState } from "react";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import * as Animatable from 'react-native-animatable';
-import { View, StyleSheet, Image, Text, TextInput, Pressable, Button } from "react-native"
+import { View, StyleSheet, Image, Text, TextInput, Pressable, Button, Alert } from "react-native"
+import axios from "axios";
 
 export const Login = () => {
-    const navigation = useNavigation<NavigationProp<any>>();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const navigation = useNavigation<NavigationProp<any>>();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://192.168.1.19:8080/users/login", {
+        email,
+        password,
+      });
+      navigation.navigate('');
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Erro", "Não foi possível fazer o login. Tente novamente.");
+    }
+  };
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.logo}>
-                <Image
-                    style={styles.image}
-                    source={require("../../../assets/logo/Logoeschor.png")}
-                />
-            </View>
-            <Animatable.View
-                animation="fadeInRight"
-                duration={500}
-                style={styles.formWrapper}
-            >
-                <View style={styles.form}>
-                    <Text style={styles.label}>email</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Digite seu e-mail"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                    />
-                    <Text style={styles.label}>Senha</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="********"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                    />
-                    <Button
-                        title={"Entrar"}
-                        onPress={() => { }}
-                        disabled={false}
-                    />
-                    <Pressable onPress={() => navigation.navigate('forgot')}>
-                        <Text>Esqueceu a senha?</Text>
-                    </Pressable>
-                </View>
-            </Animatable.View>
-            <Pressable onPress={() => navigation.navigate('register')}>
-                <Text>Não tem uma conta? Cadastre-se aqui!</Text>
-            </Pressable>
+  return (
+    <View style={styles.container}>
+      <View style={styles.logo}>
+        <Image
+          style={styles.image}
+          source={require("../../../assets/logo/Logoeschor.png")}
+        />
+      </View>
+      <Animatable.View
+        animation="fadeInRight"
+        duration={500}
+        style={styles.formWrapper}
+      >
+        <View style={styles.form}>
+          <Text style={styles.label}>email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite seu e-mail"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <Text style={styles.label}>Senha</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="********"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+          <Button
+            title={"Entrar"}
+            onPress={handleLogin}
+            disabled={false}
+          />
+          <Pressable onPress={() => navigation.navigate('forgot')}>
+            <Text>Esqueceu a senha?</Text>
+          </Pressable>
         </View>
-    )
+      </Animatable.View>
+      <Pressable onPress={() => navigation.navigate('register')}>
+        <Text>Não tem uma conta? Cadastre-se aqui!</Text>
+      </Pressable>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

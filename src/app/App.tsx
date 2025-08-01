@@ -5,6 +5,7 @@ import { Register } from "../pages/public/register";
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -16,7 +17,17 @@ export default function App() {
         />
         <Stack.Screen
           name="register"
-           options={{ headerShown: false }}
+          options={{ headerShown: false }}
+          component={Register}
+        />
+        <Stack.Screen
+          name="resendauth"
+          options={{ headerShown: false }}
+          component={Register}
+        />
+        <Stack.Screen
+          name="verified"
+          options={{ headerShown: false }}
           component={Register}
         />
       </Stack.Navigator>
